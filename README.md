@@ -1,6 +1,6 @@
-# Teste Técnico – Desenvolvedor Front-End Pleno
+# Teste Técnico – Desenvolvedor Front-End
 
-Bem-vindo ao teste técnico para a vaga de Desenvolvedor Front-End Pleno!  
+Bem-vindo ao teste técnico para a vaga de Desenvolvedor Front-End!  
 Este desafio tem como objetivo avaliar sua capacidade de compreender e evoluir um sistema existente, aplicando boas práticas, organização e domínio das tecnologias propostas.
 
 ---
@@ -116,20 +116,17 @@ model: {
 - Usar o  **TanStack**  para a requisição
 - Atualize os dados via **PUT** e sincronize contador e listagem
 
----
 
 ## ✨ Desafios Extras (Opcionais)
 
 Caso você conclua os requisitos principais e deseje demonstrar um conhecimento ainda mais avançado, sinta-se à vontade para implementar uma ou mais das funcionalidades abaixo:
 
----
 
 ###  Undo para Exclusão  
 
 Após excluir uma central, exiba uma notificação com a opção de **desfazer** a exclusão (dentro de alguns segundos).  
 Caso o usuário clique em “Desfazer”, restaure a central excluída.
 
----
 
 ###  Importação via CSV  
 
@@ -147,7 +144,6 @@ Central B,11:22:33:44:55:66,Modelo 2
 - O sistema deve validar as entradas antes de salvar
 - Erros devem ser exibidos de forma clara
 
----
 
 ###  Filtros Avançados com Multiseleção  
 
@@ -160,6 +156,7 @@ Implemente filtros combinados com **multiseleção de modelos** (ex: checkboxes 
 
 ## 📌 Considerações Finais
 
-- Organização do projeto é tão importante quanto a implementação  
+- Organização do projeto é tão importante quanto a implementação
+- Foque primeiro nas funcionalidades básicas propostas
 - Use componentes reutilizáveis, organize sua arquitetura e aproveite ao máximo os recursos das ferramentas mencionadas
-- Liberdade aplicar novas funcionalidades, melhorias na arquitetura, adição de testes (unitários ou e2e) e etc.
+- Liberdade para aplicar novas funcionalidades, melhorias na arquitetura, adição de testes (unitários ou e2e) e etc.
