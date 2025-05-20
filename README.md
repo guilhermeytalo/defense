@@ -128,21 +128,13 @@ Após excluir uma central, exiba uma notificação com a opção de **desfazer**
 Caso o usuário clique em “Desfazer”, restaure a central excluída.
 
 
-###  Importação via CSV  
+### Exportação para CSV  
 
-Permita que o usuário envie um arquivo `.csv` contendo várias centrais para cadastro em lote.
+Adicione a funcionalidade de **exportar a listagem de centrais** para um arquivo `.csv`.
 
-**Formato esperado do CSV**:
-
-```
-name,mac,model
-Central A,AA:BB:CC:DD:EE:FF,Modelo 1
-Central B,11:22:33:44:55:66,Modelo 2
-```
-
-- Cada linha deve conter: Nome, MAC e Modelo
-- O sistema deve validar as entradas antes de salvar
-- Erros devem ser exibidos de forma clara
+- O arquivo deve conter: Nome, MAC e Modelo
+- Deve respeitar filtros e ordenações ativas na listagem (se houver)
+- O nome do arquivo pode seguir o padrão: `centrals-export-[data].csv`
 
 
 ###  Filtros Avançados com Multiseleção  
