@@ -1,6 +1,6 @@
 import { HomeIcon } from "@components/icons/home";
 import { SidebarResource } from "../components/core/sidebar/types";
-import { DiagramProjectIcon } from "@components/icons/diagram-project"; // Example icon
+import { DiagramProjectIcon } from "@components/icons/diagram-project";
 
 export const MENU_RESOURCES_CONFIGS: SidebarResource[] = [
   {
