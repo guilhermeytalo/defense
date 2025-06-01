@@ -3,7 +3,7 @@ import { style } from '@vanilla-extract/css';
 import { theme } from '../../../styles/theme/theme.css';
 
 export const containerStyle = style({
-  minWidth: '4.8rem',
+  minWidth: '7.8rem',
   minHeight: '4.8rem',
 
   fontFamily: theme.fonts.primary,

@@ -44,3 +44,4 @@ next-env.d.ts
 /owasp-dependency-check
 sonar-project.properties
 
+package-lock.json
