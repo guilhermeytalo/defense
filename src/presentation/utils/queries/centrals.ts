@@ -2,7 +2,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3001', 
+  baseURL: 'http://localhost:5000', 
 });
 
 interface CentralsParams {
@@ -63,7 +63,7 @@ export const useCentrals = (params: CentralsParams) =>
         total: filteredCentrals.length,
       };
     },
-    keepPreviousData: true,
+    placeholderData: (previousData) => previousData,
   });
 
 export const useModels = () =>

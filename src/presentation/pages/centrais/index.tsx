@@ -33,24 +33,24 @@ export const CentraisPage = () => {
       <Title.Root size="medium">
         <Title.Text>Centrais ({data?.total ?? 0})</Title.Text>
       </Title.Root>
-      <div className={styles.controls}>
-        <button className={styles.createButton} onClick={() => window.location.href = "/centrais/create"}>
+      <div >
+        <button onClick={() => window.location.href = "/centrais/create"}>
           Criar Central
         </button>
         <input
-          className={styles.searchInput}
+          
           placeholder="Buscar por Nome"
           value={search}
           onChange={e => setSearch(e.target.value)}
         />
-        <select className={styles.pageSelect} value={pageSize} onChange={e => setPageSize(Number(e.target.value))}>
+        <select value={pageSize} onChange={e => setPageSize(Number(e.target.value))}>
           {[10, 20, 50].map(size => (
             <option key={size} value={size}>{size} por página</option>
           ))}
         </select>
       </div>
-      <div className={styles.tableContainer}>
-        <table className={styles.table}>
+      <div >
+        <table>
         <thead>
           <tr>
             <th onClick={() => setSort({ field: "name", order: sort.order === "asc" ? "desc" : "asc" })}>
@@ -83,9 +83,9 @@ export const CentraisPage = () => {
           </tbody>
         </table>
       </div>
-      <div className={styles.pagination}>
+      <div>
         <button 
-          className={styles.paginationButton}
+          
           disabled={page === 1} 
           onClick={() => setPage(page - 1)}
         >
@@ -93,7 +93,7 @@ export const CentraisPage = () => {
         </button>
         <span>Página {page}</span>
         <button 
-          className={styles.paginationButton}
+          
           disabled={data && page * pageSize >= data.total} 
           onClick={() => setPage(page + 1)}
         >
