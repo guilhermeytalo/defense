@@ -1,16 +1,13 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
-
-const api = axios.create({
-  baseURL: 'http://localhost:5000', 
-});
+import {api} from "@utils/api";
 
 interface CentralsParams {
   page: number;
   pageSize: number;
   sortField: string;
-  sortOrder: string;
+  sortOrder: 'asc' | 'desc';
   search: string;
+  modelId?: string;
 }
 
 interface Central {
@@ -21,12 +18,16 @@ interface Central {
 }
 
 interface Model {
-  id: number;
+  id: string;
   name: string;
 }
 
+interface CentralWithModel extends Central {
+  model?: Model;
+}
+
 interface CentralsResponse {
-  items: Central[];
+  items: CentralWithModel[];
   total: number;
 }
 
@@ -34,36 +35,58 @@ export const useCentrals = (params: CentralsParams) =>
   useQuery<CentralsResponse>({
     queryKey: ['centrals', params],
     queryFn: async () => {
-      const { data: allCentrals } = await api.get<Central[]>('/centrals');
-      
-      let filteredCentrals = allCentrals;
+      const [{ data: allCentrals }, { data: models }] = await Promise.all([
+        api.get<Central[]>('/centrals'),
+        api.get<Model[]>('/models')
+      ]);
+
+      let centralsWithModels: CentralWithModel[] = allCentrals.map(central => {
+        const model = models.find(m => Number(m.id) === central.modelId);
+
+        return {
+          ...central,
+          model,
+        };
+      });
+
       if (params.search) {
-        filteredCentrals = allCentrals.filter(central =>
-          central.name.toLowerCase().includes(params.search.toLowerCase())
+        const searchLower = params.search.toLowerCase();
+        centralsWithModels = centralsWithModels.filter(central => {
+          const centralName = central.name.toLowerCase();
+          const modelName = central.model?.name.toLowerCase() || '';
+          return centralName.includes(searchLower) || modelName.includes(searchLower);
+        });
+      }
+
+      if (params.modelId) {
+        centralsWithModels = centralsWithModels.filter(
+          central => central.modelId.toString() === params.modelId
         );
       }
-      
-      filteredCentrals.sort((a, b) => {
-        const aValue = params.sortField === 'name' ? a.name : a.modelId.toString();
-        const bValue = params.sortField === 'name' ? b.name : b.modelId.toString();
-        
-        if (params.sortOrder === 'asc') {
-          return aValue.localeCompare(bValue);
-        } else {
-          return bValue.localeCompare(aValue);
-        }
+
+      centralsWithModels.sort((a, b) => {
+        const aValue = params.sortField === 'model'
+          ? (a.model?.name || '')
+          : a.name;
+        const bValue = params.sortField === 'model'
+          ? (b.model?.name || '')
+          : b.name;
+
+        return params.sortOrder === 'asc'
+          ? aValue.localeCompare(bValue)
+          : bValue.localeCompare(aValue);
       });
-      
+
       const start = (params.page - 1) * params.pageSize;
       const end = start + params.pageSize;
-      const items = filteredCentrals.slice(start, end);
-      
+      const items = centralsWithModels.slice(start, end);
+
       return {
         items,
-        total: filteredCentrals.length,
+        total: centralsWithModels.length,
       };
     },
-    placeholderData: (previousData) => previousData,
+    placeholderData: (prev) => prev,
   });
 
 export const useModels = () =>
