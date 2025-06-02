@@ -3,7 +3,7 @@ import { MENU_RESOURCES_CONFIGS } from "@config/menu";
 import { ReactNode } from "react";
 import * as styles from "./styles.css";
 
-export default function CentraisLayout({ children }: { children: ReactNode }) {
+export default function CentralsLayout({ children }: { children: ReactNode }) {
   return (
     <main className={styles.centraisLayoutStyle}>
       <Sidebar.Root>

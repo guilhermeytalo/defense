@@ -1,5 +1,5 @@
-import { CentraisPage } from "@pages/centrais";
+import { CentralsPage } from "@pages/centrals";
 
-export default function Centrais() {
-  return <CentraisPage />;
+export default function Centrals() {
+  return <CentralsPage />;
 }
